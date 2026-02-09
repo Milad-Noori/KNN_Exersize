@@ -8,11 +8,11 @@ import warnings
 data = pd.read_csv('diabetes.csv')
 data.describe()
 df=pd.DataFrame(data)
-df
+
 data = pd.read_csv('diabetes.csv')
 data.describe()
-X = pd.DataFrame(data ,columns=['Pregnancies','Glucose','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age'])
-Y = data['Outcome'].values.reshape(-1 , 1)
+X = df.drop(['Outcome'])
+Y = data['Outcome']
 X_train ,X_test , Y_train , Y_test = train_test_split(X,Y , test_size=0.3 , random_state=0)
 k = 5
 model=KNeighborsClassifier(k)
@@ -52,5 +52,5 @@ grid_kn.best_params_
 data.corr()
 new_data = pd.DataFrame([[6,148,72,35.0,33.6,0.627,50,50]],columns=['Pregnancies','Glucose','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age'])
 P1 =knn.predict(new_data)
-P1
+print(P1)
 metrics.accuracy_score (Y_test , y_pred)
